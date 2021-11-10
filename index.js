@@ -65,10 +65,10 @@ client.connect((err) => {
   });
 
   // post order
-  app.post("/shipment/:id", async (req, res) => {
-    const result = await shipmentCollection.insertOne(req.body);
-    res.send(result);
-  });
+  // app.post("/shipment/:id", async (req, res) => {
+  //   const result = await shipmentCollection.insertOne(req.body);
+  //   res.send(result);
+  // });
 
   // get order
   app.get("/shipment", async (req, res) => {
