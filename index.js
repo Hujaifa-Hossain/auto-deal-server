@@ -25,6 +25,9 @@ const client = new MongoClient(uri, {
 client.connect((err) => {
   const carCollection = client.db("car").collection("car_details");
   const reviewCollection = client.db("customers").collection("review");
+  const shipmentCollection = client
+    .db("shipment")
+    .collection("shipment_details");
 
   // add car
   app.post("/addCar", async (req, res) => {
@@ -33,12 +36,12 @@ client.connect((err) => {
   });
 
   // get car
-  app.get("/addCar", async (req, res) => {
+  app.get("/car", async (req, res) => {
     const result = await carCollection.find({}).toArray();
     res.send(result);
   });
 
-  // get destination
+  // get car
   app.get("/car/:id", async (req, res) => {
     console.log(req.params.id);
     const result = await carCollection
@@ -55,35 +58,31 @@ client.connect((err) => {
     res.send(result);
   });
 
-   // get review
-   app.get("/reviews", async (req, res) => {
+  // get review
+  app.get("/reviews", async (req, res) => {
     const result = await reviewCollection.find({}).toArray();
     res.send(result);
   });
 
-
-
-
   // post order
-  app.get("/orders", async (req, res) => {
-    const result = await orderCollection.find({}).toArray();
+  app.post("/shipment/:id", async (req, res) => {
+    const result = await shipmentCollection.insertOne(req.body);
     res.send(result);
   });
 
-  // post order
-  app.post("/orders/:id", async (req, res) => {
-    // console.log(req.body.id);
-    const result = await orderCollection.insertOne(req.body);
+  // get order
+  app.get("/shipment", async (req, res) => {
+    const result = await shipmentCollection.find({}).toArray();
     res.send(result);
   });
 
   //place order
-  app.post("/orders/:id", async (req, res) => {
+  app.post("/shipment/:id", async (req, res) => {
     const id = req.params.id;
     const updatedName = req.body;
     const filter = { _id: ObjectId(id) };
 
-    orderCollection
+    shipmentCollection
       .insertOne(filter, {
         $set: {
           name: updatedName.name,
@@ -94,21 +93,33 @@ client.connect((err) => {
       });
   });
 
+  //  my order
+
+  app.get("/myOrder/:email", async (req, res) => {
+    console.log(req.params.email);
+    const result = await shipmentCollection
+      .find({ email: req.params.email })
+      .toArray();
+    res.send(result);
+  });
+
   // delete data from cart delete api
   app.delete("/delete/:id", async (req, res) => {
     const id = req.params.id;
     const query = { _id: ObjectId(id) };
-    const result = await orderCollection.deleteOne(query);
+    const result = await shipmentCollection.deleteOne(query);
     res.json(result);
   });
 
   // get by email
-  app.get("/orders/:email", async (req, res) => {
-    const result = await orderCollection.find({
-      email: req.params.email,
-    }).toArray();
-    res.send(result);
-  });
+  // app.get("/orders/:email", async (req, res) => {
+  //   const result = await orderCollection
+  //     .find({
+  //       email: req.params.email,
+  //     })
+  //     .toArray();
+  //   res.send(result);
+  // });
 
   // client.close();
 });
