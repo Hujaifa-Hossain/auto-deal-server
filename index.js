@@ -81,7 +81,6 @@ client.connect((err) => {
     const id = req.params.id;
     const updatedName = req.body;
     const filter = { _id: ObjectId(id) };
-
     shipmentCollection
       .insertOne(filter, {
         $set: {
@@ -94,7 +93,6 @@ client.connect((err) => {
   });
 
   //  my order
-
   app.get("/myOrder/:email", async (req, res) => {
     console.log(req.params.email);
     const result = await shipmentCollection
@@ -103,11 +101,19 @@ client.connect((err) => {
     res.send(result);
   });
 
-  // delete data from cart delete api
+  // delete data from my order
   app.delete("/delete/:id", async (req, res) => {
     const id = req.params.id;
     const query = { _id: ObjectId(id) };
     const result = await shipmentCollection.deleteOne(query);
+    res.json(result);
+  });
+
+  // delete data from explore
+  app.delete("/car/:id", async (req, res) => {
+    const id = req.params.id;
+    const query = { _id: ObjectId(id) };
+    const result = await carCollection.deleteOne(query);
     res.json(result);
   });
 
