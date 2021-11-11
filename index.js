@@ -101,6 +101,11 @@ client.connect((err) => {
     res.send(result);
   });
 
+  app.get("/orders", async (req, res) => {
+    const result = await shipmentCollection.find({}).toArray();
+    res.send(result);
+  });
+
   // delete data from my order
   app.delete("/delete/:id", async (req, res) => {
     const id = req.params.id;
