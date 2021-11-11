@@ -122,16 +122,6 @@ client.connect((err) => {
     res.json(result);
   });
 
-  // get by email
-  // app.get("/orders/:email", async (req, res) => {
-  //   const result = await orderCollection
-  //     .find({
-  //       email: req.params.email,
-  //     })
-  //     .toArray();
-  //   res.send(result);
-  // });
-
   // client.close();
 });
 
