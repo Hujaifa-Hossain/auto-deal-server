@@ -28,6 +28,7 @@ client.connect((err) => {
   const shipmentCollection = client
     .db("shipment")
     .collection("shipment_details");
+  const usersCollection = client.db("auto_users").collection("users");
 
   // add car
   app.post("/addCar", async (req, res) => {
@@ -43,7 +44,6 @@ client.connect((err) => {
 
   // get car
   app.get("/car/:id", async (req, res) => {
-    console.log(req.params.id);
     const result = await carCollection
       .find({
         _id: ObjectId(req.params.id),
@@ -94,7 +94,6 @@ client.connect((err) => {
 
   //  my order
   app.get("/myOrder/:email", async (req, res) => {
-    console.log(req.params.email);
     const result = await shipmentCollection
       .find({ email: req.params.email })
       .toArray();
@@ -120,6 +119,33 @@ client.connect((err) => {
     const query = { _id: ObjectId(id) };
     const result = await carCollection.deleteOne(query);
     res.json(result);
+  });
+
+  // post user 
+  app.post("/addUserInfo", async (req, res) => {
+    console.log("req.body");
+    const result = await usersCollection.insertOne(req.body);
+    res.send(result);
+  });
+
+  // make admin
+  app.put("/makeAdmin", async (req, res) => {
+    const filter = { email: req.body.email };
+    const result = await usersCollection.find(filter).toArray();
+    if (result) {
+      const documents = await usersCollection.updateOne(filter, {
+        $set: { role: "admin" },
+      });
+    }
+  });
+
+  // check admin or not
+  app.get("/checkAdmin/:email", async (req, res) => {
+    const result = await usersCollection
+      .find({ email: req.params.email })
+      .toArray();
+    console.log(result);
+    res.send(result);
   });
 
   // client.close();
