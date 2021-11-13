@@ -121,7 +121,7 @@ client.connect((err) => {
     res.json(result);
   });
 
-  // post user 
+  // post user
   app.post("/addUserInfo", async (req, res) => {
     console.log("req.body");
     const result = await usersCollection.insertOne(req.body);
@@ -148,20 +148,7 @@ client.connect((err) => {
     res.send(result);
   });
 
-  // // status update
-  // app.put("/orders/:id", async (req, res) => {
-  //   const filter = { _id: ObjectId(req.params.id) };
-  //   console.log(req.params.id);
-  //   const result = await shipmentCollection.updateOne(filter, {
-  //     $set: {
-  //       status: {status: "shipped"},
-  //     },
-  //   });
-  //   res.send(result);
-  //   console.log(result);
-  // });
-
-
+  // status update
   app.put("/updateStatus/:id", (req, res) => {
     const id = req.params.id;
     const updatedStatus = req.body.status;
