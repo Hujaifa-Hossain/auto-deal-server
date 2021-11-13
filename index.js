@@ -148,6 +148,34 @@ client.connect((err) => {
     res.send(result);
   });
 
+  // // status update
+  // app.put("/orders/:id", async (req, res) => {
+  //   const filter = { _id: ObjectId(req.params.id) };
+  //   console.log(req.params.id);
+  //   const result = await shipmentCollection.updateOne(filter, {
+  //     $set: {
+  //       status: {status: "shipped"},
+  //     },
+  //   });
+  //   res.send(result);
+  //   console.log(result);
+  // });
+
+
+  app.put("/updateStatus/:id", (req, res) => {
+    const id = req.params.id;
+    const updatedStatus = req.body.status;
+    const filter = { _id: ObjectId(id) };
+    console.log(updatedStatus);
+    shipmentCollection
+      .updateOne(filter, {
+        $set: { status: updatedStatus },
+      })
+      .then((result) => {
+        res.send(result);
+      });
+  });
+
   // client.close();
 });
 
