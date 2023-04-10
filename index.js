@@ -163,8 +163,7 @@ client.connect((err) => {
   });
 
   // client.close();
-});
-
-app.listen(port, () => {
-  console.log(`server is running @ http://localhost:${port}`);
+  app.listen(port, () => {
+    console.log(`server is running @ http://localhost:${port}`);
+  });
 });
