@@ -16,8 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello from auto deal server!");
 });
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wozmo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, {
+const client = new MongoClient(MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
