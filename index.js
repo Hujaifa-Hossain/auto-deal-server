@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Hello Hujaifa!");
+  res.send("Hello from auto deal server!");
 });
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.wozmo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
@@ -167,5 +167,5 @@ client.connect((err) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`server is running @ http://localhost:${port}`);
 });
