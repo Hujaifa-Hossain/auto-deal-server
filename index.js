@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("Hello from auto deal server!");
 });
 
-const client = new MongoClient(MONGO_URL, {
+const client = new MongoClient(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
