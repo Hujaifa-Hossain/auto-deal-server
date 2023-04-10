@@ -1,15 +1,17 @@
-## Car niche website server
+##### Auto Deal, Car REST API
 
-Live Site: https://final-assignment-11c2e.web.app/
+###### A REST API using Node.js, Express.js, MongoDB
 
-## Available Technology
+##### Endpoint
 
-Node, Express, MongoDB.
+https://ultimate-shopping.netlify.app
 
-### 5 main features about this website
+##### Installation
 
-* Fully functional website.
-* Dark focused design for challenged people.
-* User and Adming is sapereted from each other.
-* Secured by using environment variable.
-* Fullfilled every requirement of Programming Hero.
+* First download the source code and then run these commands.
+```bash
+  cd auto-deal-server
+  npm install 
+  npm run dev
+```
+    
