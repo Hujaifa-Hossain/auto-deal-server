@@ -22,12 +22,12 @@ const client = new MongoClient(process.env.MONGO_URL, {
 });
 
 client.connect((err) => {
-  const carCollection = client.db("car").collection("car_details");
-  const reviewCollection = client.db("customers").collection("review");
+  const carCollection = client.db("auto-deal").collection("car_details");
+  const reviewCollection = client.db("auto-deal").collection("reviews");
   const shipmentCollection = client
-    .db("shipment")
+    .db("auto-deal")
     .collection("shipment_details");
-  const usersCollection = client.db("auto_users").collection("users");
+  const usersCollection = client.db("auto-deal").collection("users");
 
   // add car
   app.post("/addCar", async (req, res) => {
