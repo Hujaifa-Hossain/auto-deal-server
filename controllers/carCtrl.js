@@ -19,9 +19,9 @@ const post_car = async (req, res) => {
 
 // get cars
 const get_cars = async (req, res) => {
-  let data = await carModel.find({});
+  let cars = await carModel.find({});
   try {
-    res.json(data);
+    res.json(cars);
   } catch (error) {
     res.status(500).json(err);
   }
@@ -30,8 +30,18 @@ const get_cars = async (req, res) => {
 // get car
 const get_car = async (req, res) => {
   try {
-    const product = await carModel.findById(req.params.id);
-    res.status(200).json(product);
+    const car = await carModel.find({ _id: req.params.id });
+    res.status(200).json(car);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
+//  delete car
+const delete_car = async (req, res) => {
+  try {
+    const car = await carModel.deleteOne({ _id: req.params.id });
+    res.status(200).json(car);
   } catch (error) {
     res.status(500).json(error);
   }
@@ -41,4 +51,5 @@ module.exports = {
   post_car,
   get_car,
   get_cars,
+  delete_car,
 };

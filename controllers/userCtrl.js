@@ -18,20 +18,22 @@ const post_user = async (req, res) => {
 
 // make admin
 const make_admin = async (req, res) => {
-  const filter = { email: req.body.email };
-  const result = await userModel.find(filter).toArray();
-  if (result) {
-    const documents = await userModel.updateOne(filter, {
-      $set: { role: "admin" },
+  const user = await userModel.find({ email: req.body.email });
+  if (user) {
+    await userModel.updateOne(user, {
+      $set: { isAdmin: true },
     });
   }
 };
 
 // check admin or not
 const check_admin = async (req, res) => {
-  const result = await userModel.find({ email: req.params.email }).toArray();
-  console.log(result);
-  res.send(result);
+  const check = userModel.find({ email: req.params.email });
+  try {
+    res.status(200).json(check);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 module.exports = {

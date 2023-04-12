@@ -7,5 +7,6 @@ router.get("/car/:id", controller.get_car);
 
 router.get("/car", controller.get_cars);
 
+router.delete("/car/:id", controller.delete_car);
 
 module.exports = router;
