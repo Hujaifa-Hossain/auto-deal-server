@@ -2,12 +2,10 @@
 
 ###### A simple REST API using Node.js, Express.js, MongoDB
 
-##### Preview
+##### Hosted @ Firebase
+https://auto-deal-client.web.app/
 
-https://ultimate-shopping.netlify.app
-
-##### Endpoint
-
+##### REST API hosted @ Render
 https://auto-deal-server.onrender.com/
 
 ##### Installation
