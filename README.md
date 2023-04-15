@@ -1,10 +1,14 @@
-##### Auto Deal, Car REST API
+##### Auto Deal - Car Website REST API
 
-###### A REST API using Node.js, Express.js, MongoDB
+###### A simple REST API using Node.js, Express.js, MongoDB
+
+##### Preview
+
+https://ultimate-shopping.netlify.app
 
 ##### Endpoint
 
-https://ultimate-shopping.netlify.app
+https://auto-deal-server.onrender.com/
 
 ##### Installation
 
