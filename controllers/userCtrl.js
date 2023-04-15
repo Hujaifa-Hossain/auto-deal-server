@@ -3,7 +3,7 @@ const userModel = require("../models/userModel");
 // post user
 const post_user = async (req, res) => {
   const newUser = new userModel({
-    name: req.body.name,
+    // displayName: req.body.displayName,
     email: req.body.email,
     password: req.body.password,
   });
@@ -18,17 +18,17 @@ const post_user = async (req, res) => {
 
 // make admin
 const make_admin = async (req, res) => {
-  const user = await userModel.find({ email: req.body.email });
-  if (user) {
-    await userModel.updateOne(user, {
-      $set: { isAdmin: true },
-    });
+  try {
+    const admin = await userModel.updateOne({ isAdmin: true });
+    res.status(200).json(admin);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };
 
 // check admin or not
 const check_admin = async (req, res) => {
-  const check = userModel.find({ email: req.params.email });
+  const check = await userModel.findOne({ email: req.params.email });
   try {
     res.status(200).json(check);
   } catch (error) {

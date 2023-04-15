@@ -9,5 +9,6 @@ router.delete("/delete/:id", controller.delete_order);
 
 router.get("/orders", controller.get_orders);
 
+router.put("/updateStatus/:id", controller.update_status);
 
 module.exports = router;

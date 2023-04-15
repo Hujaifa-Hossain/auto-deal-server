@@ -4,8 +4,6 @@ const orderSchema = new mongoose.Schema({
   car: {
     type: String,
     required: true,
-    unique: true,
-    index: true,
   },
   user: {
     type: String,
@@ -22,6 +20,11 @@ const orderSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    default: 'pending',
   },
 });
 

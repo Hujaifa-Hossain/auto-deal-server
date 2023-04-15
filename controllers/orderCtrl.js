@@ -47,9 +47,21 @@ const get_orders = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+// status update
+const update_status = async (req, res) => {
+  try {
+    const order = await orderModel.updateOne({ status: req.body.status });
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+};
+
 module.exports = {
   post_order,
   my_order,
   delete_order,
   get_orders,
+  update_status,
 };

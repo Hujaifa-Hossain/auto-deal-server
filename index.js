@@ -26,12 +26,6 @@ app.use("/api", carRoute);
 app.use("/api", reviewRoute);
 app.use("/api", orderRoute);
 
-//   // get order
-//   app.get("/shipment", async (req, res) => {
-//     const result = await shipmentCollection.find({}).toArray();
-//     res.send(result);
-//   });
-
 //   // status update
 //   app.put("/updateStatus/:id", (req, res) => {
 //     const id = req.params.id;
